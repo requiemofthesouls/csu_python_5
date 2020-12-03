@@ -36,7 +36,7 @@ def handle_client(client_socket: socket.socket):
             # future = pool.submit(fib, n)
             # result = future.result()
             result = fib(n)
-            client_socket.send()  # blocking
+            client_socket.send(result)  # blocking
 
     client_socket.close()
 
