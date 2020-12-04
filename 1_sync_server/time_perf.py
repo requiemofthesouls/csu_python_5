@@ -10,4 +10,4 @@ if __name__ == '__main__':
         sock.send(b'30')
         resp = sock.recv(100)
         end = time.time()
-        print(end - start)
+        print(round(end - start, 5))
