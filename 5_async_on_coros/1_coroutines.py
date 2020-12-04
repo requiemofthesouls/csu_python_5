@@ -83,7 +83,7 @@ def average():
             avg = round(summ / count)
 
 
-print("Builing average generator")
+print("Builing average coroutine")
 g = average()
 print(getgeneratorstate(g))
 print("Sending None")
@@ -94,6 +94,7 @@ print(g.send(7))
 print(g.send(1))
 print(g.send(7))
 print(g.send(12))
+# g.close()  # Можно закрыть корутину методом close()
 try:
     g.throw(StopIteration)
     # g.throw(TestException)
@@ -107,7 +108,7 @@ print("=" * 100)
 # ==================================================
 
 
-def coroutine(func):
+def init_gen(func):
     def inner(*args, **kwargs):
         g = func(*args, **kwargs)
         g.send(None)
@@ -116,7 +117,7 @@ def coroutine(func):
     return inner
 
 
-@coroutine
+@init_gen
 def average():
     count, summ, avg = 0, 0, None
 

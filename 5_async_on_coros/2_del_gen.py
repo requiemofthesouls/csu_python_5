@@ -8,7 +8,7 @@ from typing import Generator
 """
 
 
-def coroutine(func):
+def init_gen(func):
     def inner(*args, **kwargs):
         g = func(*args, **kwargs)
         g.send(None)
@@ -52,7 +52,7 @@ print("=" * 100)
 # Теперь переделаем эти генераторы в корутины
 
 
-@coroutine
+@init_gen
 def subgen():
     """ Читающий генератор """
     while True:
@@ -66,7 +66,7 @@ def subgen():
     return "Returned from subgen()"
 
 
-@coroutine
+@init_gen
 def delegator(sg: Generator):
     """ Транслятор """
     while True:
